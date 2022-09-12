@@ -1,6 +1,7 @@
 package com.example.primeiraapi;
 
-import com.example.primeiraapi.model.Person;
+import com.example.primeiraapi.data.vo.v1.PersonVO;
+import com.example.primeiraapi.data.vo.v2.PersonVOV2;
 import com.example.primeiraapi.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,27 +19,34 @@ public class PersonController {
 
 
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Person findById(
+  public PersonVO findById(
             @PathVariable(value = "id") Long id) {
     return service.findById(id);
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<Person> findAll() {
+  public List<PersonVO> findAll() {
     return service.findAll();
   }
 
   @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
-  public Person createPerson(
-           @RequestBody Person person){
+  public PersonVO createPerson(
+           @RequestBody PersonVO person){
     return service.createPerson(person);
+  }
+
+  @PostMapping(value = "/v2", consumes= MediaType.APPLICATION_JSON_VALUE,
+          produces = MediaType.APPLICATION_JSON_VALUE)
+  public PersonVOV2 createV2Person(
+          @RequestBody PersonVOV2 person){
+    return service.createV2Person(person);
   }
 
   @PutMapping(consumes= MediaType.APPLICATION_JSON_VALUE,
           produces = MediaType.APPLICATION_JSON_VALUE)
-  public Person updatePerson(
-           @RequestBody Person person){
+  public PersonVO updatePerson(
+           @RequestBody PersonVO person){
 
     return service.updatePerson(person);
   }

@@ -15,6 +15,7 @@
     <description>primeiraAPI</description>
     <properties>
         <java.version>18</java.version>
+        <dozer.version>6.4.0</dozer.version>
     </properties>
     <dependencies>
         <dependency>
@@ -75,6 +76,15 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+            <version>${dozer.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
