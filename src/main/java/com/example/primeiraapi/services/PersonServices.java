@@ -6,6 +6,7 @@ import com.example.primeiraapi.converter.DozerConverter;
 import com.example.primeiraapi.converter.custom.PersonMapper;
 import com.example.primeiraapi.data.vo.v1.PersonVO;
 import com.example.primeiraapi.data.vo.v2.PersonVOV2;
+import com.example.primeiraapi.exceptions.RequiredIsNullException2;
 import com.example.primeiraapi.exceptions.ResourcedNotFountException;
 import com.example.primeiraapi.data.vo.v1.model.Person;
 import com.example.primeiraapi.repositories.PersonRepository;
@@ -46,6 +47,7 @@ public class PersonServices {
     }
 
     public PersonVO createPerson(PersonVO person) {
+        if(person == null) throw new RequiredIsNullException2();
         logger.info("Creating one person");
         var entity = DozerConverter.parseObject(person, Person.class);
         var vo = DozerConverter.parseObject(repository.save(entity), PersonVO.class);
